@@ -1065,33 +1065,39 @@
       // VIEW COUNTER (countapi.xyz)
       // ═══════════════════════════════════
       (async function() {
-        try {
-          // hit countapi — namespace=axello, key=profile-views
-          // First visit creates the key automatically
-          const res = await fetch('https://api.countapi.xyz/hit/axello-profile/views');
-          const data = await res.json();
-          const count = data.value;
-          const el = document.getElementById('view-count');
-          const badge = document.getElementById('views-badge');
+  try {
+    const res = await fetch('https://visitor.6developer.com/visit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        domain: 'axello47.github.io',
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        page_path: window.location.pathname,
+        page_title: document.title,
+        referrer: document.referrer
+      })
+    });
+    const data = await res.json();
+    const count = data.totalCount;
+    const el = document.getElementById('view-count');
+    const badge = document.getElementById('views-badge');
 
-          // Animate number counting up
-          const start = Math.max(0, count - 30);
-          let current = start;
-          const step = () => {
-            current = Math.min(current + Math.ceil((count - current) / 6 + 1), count);
-            el.textContent = current.toLocaleString();
-            if (current < count) requestAnimationFrame(step);
-            else {
-              el.textContent = count.toLocaleString();
-              badge.classList.add('loaded');
-            }
-          };
-          setTimeout(step, 1200);
-        } catch(e) {
-          // Fallback if API unreachable
-          document.getElementById('view-count').textContent = '—';
-        }
-      })();
+    const start = Math.max(0, count - 30);
+    let current = start;
+    const step = () => {
+      current = Math.min(current + Math.ceil((count - current) / 6 + 1), count);
+      el.textContent = current.toLocaleString();
+      if (current < count) requestAnimationFrame(step);
+      else {
+        el.textContent = count.toLocaleString();
+        badge.classList.add('loaded');
+      }
+    };
+    setTimeout(step, 1200);
+  } catch(e) {
+    document.getElementById('view-count').textContent = '—';
+  }
+})();
     </script>
   </body>
 </html>
