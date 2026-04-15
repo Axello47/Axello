@@ -885,7 +885,7 @@
               border-color: rgba(225, 48, 108, 0.35);
             "
           >
-            📸
+            <img src="https://raw.githubusercontent.com/Axello47/Icons_macos/main/Dark/Instagram.png" alt="Instagram" style="width:28px;height:28px;object-fit:contain;border-radius:6px;" onerror="this.replaceWith(document.createTextNode('📸'))">
           </div>
           <div class="link-text">
             <div class="link-name">Instagram</div>
@@ -902,7 +902,7 @@
               border-color: rgba(88, 101, 242, 0.35);
             "
           >
-            🎮
+            <img src="https://raw.githubusercontent.com/Axello47/Icons_macos/main/Dark/Discord.png" alt="Discord" style="width:28px;height:28px;object-fit:contain;border-radius:6px;" onerror="this.replaceWith(document.createTextNode('🎮'))">
           </div>
           <div class="link-text">
             <div class="link-name">Discord</div>
@@ -925,7 +925,7 @@
               border-color: rgba(30, 215, 96, 0.35);
             "
           >
-            🎵
+            <img src="https://raw.githubusercontent.com/Axello47/Icons_macos/main/Dark/Spotify.png" alt="Spotify" style="width:28px;height:28px;object-fit:contain;border-radius:6px;" onerror="this.replaceWith(document.createTextNode('🎵'))">
           </div>
           <div class="link-text">
             <div class="link-name">Spotify</div>
@@ -946,7 +946,7 @@
               border-color: rgba(255, 255, 255, 0.15);
             "
           >
-            🐙
+            <img src="https://raw.githubusercontent.com/Axello47/Icons_macos/main/Dark/Github.png" alt="GitHub" style="width:28px;height:28px;object-fit:contain;border-radius:6px;" onerror="this.replaceWith(document.createTextNode('🐙'))">
           </div>
           <div class="link-text">
             <div class="link-name">GitHub</div>
@@ -967,7 +967,7 @@
               border-color: rgba(145, 70, 255, 0.35);
             "
           >
-            📺
+            <img src="https://raw.githubusercontent.com/Axello47/Icons_macos/main/Dark/Twitch.png" alt="Twitch" style="width:28px;height:28px;object-fit:contain;border-radius:6px;" onerror="this.replaceWith(document.createTextNode('📺'))">
           </div>
           <div class="link-text">
             <div class="link-name">Twitch</div>
@@ -988,7 +988,7 @@
               border-color: rgba(102, 192, 244, 0.3);
             "
           >
-            🎮
+            <img src="https://raw.githubusercontent.com/Axello47/Icons_macos/main/Dark/Steam.png" alt="Steam" style="width:28px;height:28px;object-fit:contain;border-radius:6px;" onerror="this.replaceWith(document.createTextNode('🎮'))">
           </div>
           <div class="link-text">
             <div class="link-name">Steam</div>
@@ -1208,23 +1208,14 @@
       });
     
       // ═══════════════════════════════════
-      // VIEW COUNTER (countapi.xyz)
+      // VIEW COUNTER (counterapi.dev — works on any domain)
       // ═══════════════════════════════════
       (async function() {
   try {
-    const res = await fetch('https://visitor.6developer.com/visit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        domain: 'axello47.github.io',
-        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-        page_path: window.location.pathname,
-        page_title: document.title,
-        referrer: document.referrer
-      })
-    });
+    // counterapi.dev: free, no-auth, domain-agnostic hit counter
+    const res = await fetch('https://api.counterapi.dev/v1/axello47-portfolio/visits/up');
     const data = await res.json();
-    const count = data.totalCount;
+    const count = data.count || 0;
     const el = document.getElementById('view-count');
     const badge = document.getElementById('views-badge');
 
